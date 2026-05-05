@@ -5,8 +5,8 @@ pipeline {
         AWS_REGION = 'ap-south-1'
         ACCOUNT_ID = "324583653988"
 
-        ECR_BACKEND = "324583653988.dkr.ecr.ap-south-1.amazonaws.com/streaming-backend"
-        ECR_FRONTEND = "324583653988.dkr.ecr.ap-south-1.amazonaws.com/streaming-frontend"
+        ECR_BACKEND = "${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/streaming-backend"
+        ECR_FRONTEND = "${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/streaming-frontend"
     }
 
     stages {
@@ -19,35 +19,25 @@ pipeline {
 
         stage('Debug Workspace') {
             steps {
-                sh 'echo "Current Directory:"'
-                sh 'pwd'
-                sh 'echo "All Files:"'
-                sh 'ls -R'
+                sh '''
+                echo "Current Directory:"
+                pwd
+                echo "Files:"
+                ls -la
+                '''
             }
         }
 
         stage('Build Docker Images') {
             steps {
                 sh '''
-                echo "Building Backend..."
-                if [ -d "backend" ]; then
-                    docker build -t backend ./backend
-                elif [ -d "server" ]; then
-                    docker build -t backend ./server
-                else
-                    echo "❌ Backend folder not found"
-                    exit 1
-                fi
+                cd /var/jenkins_home/workspace/StreamingApp
 
-                echo "Building Frontend..."
-                if [ -d "frontend" ]; then
-                    docker build -t frontend ./frontend
-                elif [ -d "client" ]; then
-                    docker build -t frontend ./client
-                else
-                    echo "❌ Frontend folder not found"
-                    exit 1
-                fi
+                echo "Listing files:"
+                ls
+
+                docker build -t backend ./backend
+                docker build -t frontend ./frontend
                 '''
             }
         }
