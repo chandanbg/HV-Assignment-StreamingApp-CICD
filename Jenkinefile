@@ -13,14 +13,42 @@ pipeline {
 
         stage('Clone Repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/fancy1505/StreamingApp.git'
+                git url: 'https://github.com/fancy1505/StreamingApp.git', branch: 'main'
+            }
+        }
+
+        stage('Debug Workspace') {
+            steps {
+                sh 'echo "Current Directory:"'
+                sh 'pwd'
+                sh 'echo "All Files:"'
+                sh 'ls -R'
             }
         }
 
         stage('Build Docker Images') {
             steps {
-                sh 'docker build -t backend ./backend'
-                sh 'docker build -t frontend ./frontend'
+                sh '''
+                echo "Building Backend..."
+                if [ -d "backend" ]; then
+                    docker build -t backend ./backend
+                elif [ -d "server" ]; then
+                    docker build -t backend ./server
+                else
+                    echo "❌ Backend folder not found"
+                    exit 1
+                fi
+
+                echo "Building Frontend..."
+                if [ -d "frontend" ]; then
+                    docker build -t frontend ./frontend
+                elif [ -d "client" ]; then
+                    docker build -t frontend ./client
+                else
+                    echo "❌ Frontend folder not found"
+                    exit 1
+                fi
+                '''
             }
         }
 
