@@ -13,7 +13,7 @@ pipeline {
 
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/fancy1505/StreamingApp.git'
+                git branch: 'main', url: 'https://github.com/fancy1505/StreamingApp.git'
             }
         }
 
