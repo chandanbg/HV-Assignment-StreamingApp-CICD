@@ -1,0 +1,54 @@
+pipeline {
+    agent any
+
+    environment {
+        AWS_REGION = 'ap-south-1'
+        ACCOUNT_ID = "324583653988"
+
+        ECR_BACKEND = "324583653988.dkr.ecr.ap-south-1.amazonaws.com/streaming-backend"
+        ECR_FRONTEND = "324583653988.dkr.ecr.ap-south-1.amazonaws.com/streaming-frontend"
+    }
+
+    stages {
+
+        stage('Clone Repo') {
+            steps {
+                git 'https://github.com/fancy1505/StreamingApp.git'
+            }
+        }
+
+        stage('Build Docker Images') {
+            steps {
+                sh 'docker build -t backend ./backend'
+                sh 'docker build -t frontend ./frontend'
+            }
+        }
+
+        stage('Login to ECR') {
+            steps {
+                sh '''
+                aws ecr get-login-password --region $AWS_REGION | \
+                docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+                '''
+            }
+        }
+
+        stage('Tag Images') {
+            steps {
+                sh '''
+                docker tag backend:latest $ECR_BACKEND:latest
+                docker tag frontend:latest $ECR_FRONTEND:latest
+                '''
+            }
+        }
+
+        stage('Push to ECR') {
+            steps {
+                sh '''
+                docker push $ECR_BACKEND:latest
+                docker push $ECR_FRONTEND:latest
+                '''
+            }
+        }
+    }
+}
