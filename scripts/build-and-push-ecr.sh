@@ -14,7 +14,7 @@ dockerfiles=(Dockerfile Dockerfile streamingService/Dockerfile adminService/Dock
 aws ecr get-login-password --region "${AWS_REGION}" \
   | docker login --username AWS --password-stdin "${ECR_REGISTRY}"
 
-"$(dirname "$0")/create-ecr-repos.sh"
+./scripts/create-ecr-repos.sh
 
 for i in "${!services[@]}"; do
   service="${services[$i]}"
