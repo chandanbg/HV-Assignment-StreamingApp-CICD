@@ -59,4 +59,4 @@ pipeline {
     failure { echo 'Build failed!' }
   }
 }
-EOF
+
