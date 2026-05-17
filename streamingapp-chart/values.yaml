@@ -1,5 +1,5 @@
 replicaCount: 1
-
+jwtSecret: "mysecretkey123"
 images:
   frontend:
     repository: 640928554403.dkr.ecr.us-east-1.amazonaws.com/streamingapp-frontend
@@ -16,10 +16,4 @@ images:
   chat:
     repository: 640928554403.dkr.ecr.us-east-1.amazonaws.com/streamingapp-chat
     tag: latest
-
-ports:
-  frontend: 80
-  auth: 3001
-  streaming: 3002
-  admin: 3003
-  chat: 3004
+mongoUri: "mongodb+srv://stream:Stream123@streamingapp.1jjw3rq.mongodb.net/streamingapp?retryWrites=true&w=majority"
