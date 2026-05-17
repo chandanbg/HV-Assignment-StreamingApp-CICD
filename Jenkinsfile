@@ -1,6 +1,3 @@
-cd /home/ubuntu/StreamingApp
-
-cat > Jenkinsfile << 'EOF'
 pipeline {
   agent any
   environment {
