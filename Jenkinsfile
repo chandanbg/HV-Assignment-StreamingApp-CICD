@@ -1,3 +1,6 @@
+cd /home/ubuntu/StreamingApp
+
+cat > Jenkinsfile << 'EOF'
 pipeline {
   agent any
   environment {
@@ -10,18 +13,10 @@ pipeline {
     stage('ECR Login') {
       steps {
         withCredentials([
-          string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_KEY'),
-          string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET')
+          string(credentialsId: 'ANKIT_AWS_ACCESS_KEY_ID', variable: 'AWS_KEY'),
+          string(credentialsId: 'ANKIT_AWS_ACCESS_KEY', variable: 'AWS_SECRET')
         ]) {
           sh '''
-            # Install AWS CLI if not present
-            if ! command -v aws &> /dev/null; then
-              curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-              unzip -o awscliv2.zip
-              sudo ./aws/install --update || ./aws/install --update
-            fi
-            
-            # Login to ECR
             export AWS_ACCESS_KEY_ID=$AWS_KEY
             export AWS_SECRET_ACCESS_KEY=$AWS_SECRET
             export AWS_DEFAULT_REGION=$AWS_REGION
@@ -33,13 +28,15 @@ pipeline {
     stage('Build & Push') {
       steps {
         withCredentials([
-          string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_KEY'),
-          string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET')
+          string(credentialsId: 'ANKIT_AWS_ACCESS_KEY_ID', variable: 'AWS_KEY'),
+          string(credentialsId: 'ANKIT_AWS_ACCESS_KEY', variable: 'AWS_SECRET')
         ]) {
           sh '''
             export AWS_ACCESS_KEY_ID=$AWS_KEY
             export AWS_SECRET_ACCESS_KEY=$AWS_SECRET
             export AWS_DEFAULT_REGION=$AWS_REGION
+
+            aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_BASE
 
             docker build -t $ECR_BASE/streamingapp-frontend:$BUILD_NUMBER ./frontend
             docker push $ECR_BASE/streamingapp-frontend:$BUILD_NUMBER
@@ -65,3 +62,4 @@ pipeline {
     failure { echo 'Build failed!' }
   }
 }
+EOF
