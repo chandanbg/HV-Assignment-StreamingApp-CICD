@@ -5,16 +5,16 @@ mongoUri: "mongodb+srv://stream:Stream123@streamingapp.1jjw3rq.mongodb.net/strea
 images:
   frontend:
     repository: 640928554403.dkr.ecr.us-east-1.amazonaws.com/streamingapp-frontend
-    tag: v6
+    tag: "6"
   auth:
     repository: 640928554403.dkr.ecr.us-east-1.amazonaws.com/streamingapp-auth
-    tag: v2
+    tag: "6"
   streaming:
     repository: 640928554403.dkr.ecr.us-east-1.amazonaws.com/streamingapp-streaming
-    tag: v2
+    tag: "6"
   admin:
     repository: 640928554403.dkr.ecr.us-east-1.amazonaws.com/streamingapp-admin
-    tag: v2
+    tag: "6"
   chat:
     repository: 640928554403.dkr.ecr.us-east-1.amazonaws.com/streamingapp-chat
-    tag: v2
+    tag: "6"
