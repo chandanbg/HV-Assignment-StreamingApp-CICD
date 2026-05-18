@@ -24,8 +24,10 @@ git checkout -b dev
 - `main` — synced with upstream original repo
 - `dev` — all development work done here
 
-<!-- SCREENSHOT: Add screenshot of GitHub repo showing "forked from UnpredictablePrashant/StreamingApp" -->
-<!-- SCREENSHOT: Add screenshot of GitHub showing 2 branches (main and dev) -->
+<img width="2180" height="920" alt="image" src="https://github.com/user-attachments/assets/0769263e-0b4f-419b-bd9f-f614ddcec46f" />
+
+<img width="2126" height="920" alt="image" src="https://github.com/user-attachments/assets/58276885-2933-43c6-b4e7-d1363ba26591" />
+
 
 ### Sync with Upstream
 ```bash
@@ -66,8 +68,8 @@ docker compose up --build
 docker ps
 ```
 
-<!-- SCREENSHOT: Add screenshot of "docker ps" showing all 6 containers running -->
-<!-- SCREENSHOT: Add screenshot of frontend running at http://54.144.66.69:3000 -->
+<img width="1966" height="380" alt="image" src="https://github.com/user-attachments/assets/63a5de5a-c11a-4c25-838e-a0e7f4402e22" />
+
 
 ### ECR Repositories Created
 ```bash
@@ -88,8 +90,10 @@ docker push 640928554403.dkr.ecr.us-east-1.amazonaws.com/streamingapp-admin:late
 docker push 640928554403.dkr.ecr.us-east-1.amazonaws.com/streamingapp-chat:latest
 ```
 
-<!-- SCREENSHOT: Add screenshot of AWS ECR console showing all 5 repositories -->
-<!-- SCREENSHOT: Add screenshot of ECR showing images pushed with tags -->
+<img width="2399" height="879" alt="image" src="https://github.com/user-attachments/assets/8640dcd5-1cc6-42cc-8026-e83cde98cea2" />
+
+<img width="1607" height="694" alt="image" src="https://github.com/user-attachments/assets/cb13cee4-845a-4819-a555-968132a38317" />
+
 
 ---
 
@@ -117,11 +121,6 @@ aws configure
 aws sts get-caller-identity
 ```
 
-<!-- SCREENSHOT: Add screenshot of "aws sts get-caller-identity" showing Account ID -->
-<!-- SCREENSHOT: Add screenshot of "aws --version" output -->
-
----
-
 ## Step 4: Continuous Integration (CI) using Jenkins
 
 ### Jenkins Setup
@@ -138,7 +137,7 @@ ANKIT_AWS_ACCOUNT_ID        → 640928554403
 pipeline {
   agent any
   environment {
-    AWS_ACCOUNT_ID = '640928554403'
+    AWS_ACCOUNT_ID = 'AWS_ACCOUNT_ID'
     AWS_REGION     = 'us-east-1'
     ECR_BASE       = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
   }
@@ -150,9 +149,8 @@ pipeline {
 }
 ```
 
-<!-- SCREENSHOT: Add screenshot of Jenkins pipeline page showing StreamingApp-ARthakkar -->
-<!-- SCREENSHOT: Add screenshot of Jenkins showing GREEN successful build -->
-<!-- SCREENSHOT: Add screenshot of Jenkins Console Output showing "Finished: SUCCESS" -->
+<img width="2399" height="1061" alt="image" src="https://github.com/user-attachments/assets/4671dd5c-511a-49f8-8b14-5b7af26f10be" />
+<img width="2399" height="801" alt="image" src="https://github.com/user-attachments/assets/734e1250-a009-4171-b2b2-446a5d472fdc" />
 
 ---
 
@@ -171,7 +169,7 @@ eksctl create cluster \
   --name streamingapp-cluster \
   --region us-east-1 \
   --nodegroup-name workers \
-  --node-type t3.medium \
+  --node-type t3.small \
   --nodes 2 \
   --nodes-min 1 \
   --nodes-max 4 \
@@ -187,7 +185,11 @@ aws eks update-kubeconfig --region us-east-1 --name streamingapp-cluster
 kubectl get nodes
 ```
 
-<!-- SCREENSHOT: Add screenshot of "kubectl get nodes" showing 2 nodes Ready -->
+<img width="2399" height="1080" alt="image" src="https://github.com/user-attachments/assets/5d6fab34-39f7-4326-949f-876a389f3fba" />
+
+<img width="2374" height="1071" alt="image" src="https://github.com/user-attachments/assets/4da6139c-8e18-48f5-afad-f86a99f4395c" />
+
+
 
 ### Helm Chart Structure
 
@@ -208,7 +210,8 @@ kubectl get pods
 kubectl get services
 ```
 
-<!-- SCREENSHOT: Add screenshot of "kubectl get pods" showing all 5 pods Running -->
+<img width="814" height="179" alt="image" src="https://github.com/user-attachments/assets/ff6458ec-caaf-4df6-b6ee-512a412e9420" />
+
 <!-- SCREENSHOT: Add screenshot of "kubectl get svc" showing LoadBalancer URL -->
 
 ### Frontend Access
