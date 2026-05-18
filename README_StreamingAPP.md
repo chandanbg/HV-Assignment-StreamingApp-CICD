@@ -212,13 +212,15 @@ kubectl get services
 
 <img width="814" height="179" alt="image" src="https://github.com/user-attachments/assets/ff6458ec-caaf-4df6-b6ee-512a412e9420" />
 
-<!-- SCREENSHOT: Add screenshot of "kubectl get svc" showing LoadBalancer URL -->
+<img width="1444" height="164" alt="image" src="https://github.com/user-attachments/assets/e4af8ee3-1416-479a-b159-8ef7e2aa194c" />
+
 
 ### Frontend Access
 
 URL: http://a2a67053da4f04a9eb9dac77ad7e09fd-2063731993.us-east-1.elb.amazonaws.com
 
-<!-- SCREENSHOT: Add screenshot of frontend running in browser showing login page -->
+<img width="1916" height="1003" alt="image" src="https://github.com/user-attachments/assets/5229fa28-1f51-4f21-a1fb-38c3d596181d" />
+
 <!-- SCREENSHOT: Add screenshot of successful login/registration -->
 
 ---
@@ -248,8 +250,10 @@ aws cloudwatch put-metric-alarm \
   --region us-east-1
 ```
 
-<!-- SCREENSHOT: Add screenshot of CloudWatch Log Groups showing all 5 services -->
-<!-- SCREENSHOT: Add screenshot of CloudWatch Alarm "StreamingApp-HighCPU" -->
+<img width="1654" height="644" alt="image" src="https://github.com/user-attachments/assets/67a6f82b-15cd-4e9b-a8bc-82e17af962a2" />
+
+<img width="1664" height="301" alt="image" src="https://github.com/user-attachments/assets/9968f583-e08f-4a24-a0f9-4cfc28e8f8a3" />
+
 
 ---
 
@@ -304,9 +308,6 @@ streaming  ClusterIP      10.100.166.156  <none>                                
 admin      ClusterIP      10.100.38.196   <none>                                                                    3003/TCP
 chat       ClusterIP      10.100.51.237   <none>                                                                    3004/TCP
 
-<!-- SCREENSHOT: Add screenshot of kubectl get pods all Running -->
-<!-- SCREENSHOT: Add screenshot of kubectl get svc showing LoadBalancer -->
-<!-- SCREENSHOT: Add screenshot of application running in browser -->
 
 ---
 
