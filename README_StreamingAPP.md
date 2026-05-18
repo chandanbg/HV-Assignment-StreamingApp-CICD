@@ -126,7 +126,6 @@ aws sts get-caller-identity
 
 ### Jenkins Setup
 - Jenkins running on EC2 instance
-- URL: https://jenkinsacademics.herovired.com/
 - Plugins installed: Git, Pipeline, Docker, AWS Steps
 
 ### Jenkins Credentials Added
