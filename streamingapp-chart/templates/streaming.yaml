@@ -27,7 +27,7 @@ spec:
         - name: CLIENT_URLS
           value: {{ .Values.clientUrl | quote }}
         - name: AWS_REGION
-          value: "us-east-1"
+          value: "ap-south-1"
         - name: AWS_S3_BUCKET
           value: "streamingapp-bucket-640928554403"
         - name: STREAMING_PUBLIC_URL
