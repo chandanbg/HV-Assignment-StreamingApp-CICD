@@ -31,7 +31,7 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 sh '''
-                cd /var/jenkins_home/workspace/StreamingApp
+                cd /var/jenkins_home/workspace/HV-Assignment-StreamingApp-CICD
 
                 echo "Listing files:"
                 ls
