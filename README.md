@@ -1,3 +1,18 @@
+# This is Hero Vired Assignment for CICD using Jenkins to deploy a streaming app.
+---
+## Below are the steps to be completed.
+
+Step 1: Version Control with Git
+Step 2: Prepare the MERN Application
+Step 3: AWS Environment Setup
+Step 4: Continuous Integration (CI) using Jenkins
+Step 5: Kubernetes Deployment (EKS)
+Step 6: Monitoring and Logging
+Step 7: Documentation
+Step 8: Final Validation
+
+---
+
 # StreamingApp
 
 Stream premium video content, host live watch parties, and manage your catalogue with a modern microservice architecture. The platform now ships with a production-ready admin portal, real-time chat, S3-backed adaptive streaming, and a redesigned cinematic frontend experience.
