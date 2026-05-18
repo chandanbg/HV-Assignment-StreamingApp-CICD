@@ -3,12 +3,19 @@
 ## Below are the steps to be completed.
 
 Step 1: Version Control with Git
+
 Step 2: Prepare the MERN Application
+
 Step 3: AWS Environment Setup
+
 Step 4: Continuous Integration (CI) using Jenkins
+
 Step 5: Kubernetes Deployment (EKS)
+
 Step 6: Monitoring and Logging
+
 Step 7: Documentation
+
 Step 8: Final Validation
 
 ---
