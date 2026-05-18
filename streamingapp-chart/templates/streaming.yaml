@@ -14,20 +14,24 @@ spec:
     spec:
       containers:
       - name: streaming
-        image: 640928554403.dkr.ecr.us-east-1.amazonaws.com/streamingapp-streaming:latest
+        image: 640928554403.dkr.ecr.us-east-1.amazonaws.com/streamingapp-streaming:v2
         ports:
         - containerPort: 3002
         env:
+        - name: PORT
+          value: "3002"
         - name: MONGO_URI
           value: {{ .Values.mongoUri | quote }}
         - name: JWT_SECRET
           value: {{ .Values.jwtSecret | quote }}
-        - name: PORT
-          value: "3002"
+        - name: CLIENT_URLS
+          value: {{ .Values.clientUrl | quote }}
         - name: AWS_REGION
           value: "us-east-1"
         - name: AWS_S3_BUCKET
           value: "streamingapp-bucket-640928554403"
+        - name: STREAMING_PUBLIC_URL
+          value: {{ .Values.clientUrl | quote }}
 ---
 apiVersion: v1
 kind: Service

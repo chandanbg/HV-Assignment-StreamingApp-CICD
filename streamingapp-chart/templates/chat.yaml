@@ -14,16 +14,18 @@ spec:
     spec:
       containers:
       - name: chat
-        image: 640928554403.dkr.ecr.us-east-1.amazonaws.com/streamingapp-chat:latest
+        image: 640928554403.dkr.ecr.us-east-1.amazonaws.com/streamingapp-chat:v2
         ports:
         - containerPort: 3004
         env:
+        - name: PORT
+          value: "3004"
         - name: MONGO_URI
           value: {{ .Values.mongoUri | quote }}
         - name: JWT_SECRET
           value: {{ .Values.jwtSecret | quote }}
-        - name: PORT
-          value: "3004"
+        - name: CLIENT_URLS
+          value: {{ .Values.clientUrl | quote }}
 ---
 apiVersion: v1
 kind: Service
